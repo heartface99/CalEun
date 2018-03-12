@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+
+        <title>MY to do list</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    </head>
+    <style>
+
+        h1 {font-family: 'Inconsolata', monospace;}
+        body{font-family: 'Inconsolata', monospace;
+             font-size: 16px;
+             background: url("PIC2.jpg");
+             background-color: #A0A0A0;
+             overflow: hidden;
+             }
+
+        button{cursor: pointer; position: absolute; right: 0;}
+        ul.list{padding-right: 0; margin-right: 0;}
+        li{
+            list-style-type: none;
+
+        }
+        ul li:hover{
+          cursor: pointer;
+          background-color: black;
+        }
+        button.add{
+          display:none;
+        }
+    </style>
+
+    <body>
+        <h1>to do</h1>
+
+        <input type="text" id="myText"> <button class = 'add' id="add">+</button>
+        <div>
+        <ul class="list"></ul>
+        </div>
+    </body>
+
+    <script>
+
+    //on keydown of enter key, trigger the add button
+        $("#myText").keyup(function(event) {
+          if (event.keyCode === 13) {
+            $("#add").click();
+        }
+        });
+
+      //add myText
+        document.getElementById("add").onclick = function () {
+            var text = document.getElementById("myText").value;
+            $("ul.list").append("<li >" + text + "<button class='del' onclick= 'del_task()'> x </button></li>");
+            document.getElementById('myText').value = "";
+        };
+
+
+        //onclick of a task, have option to delete
+        function del_task(){
+          var listItems = document.getElementsByTagName("li");
+          for (var i = 0; i < listItems.length; i++) {
+            listItems[i].onclick = function() {
+              this.remove()
+            };
+          }
+        }
+
+    </script>
+</html>

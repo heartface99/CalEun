@@ -1,0 +1,64 @@
+<html lang="en">
+    <head>
+      <title>cube</title>
+    <body>
+      <div>
+<a href="index.html">todo</a>
+      </div>
+        <style>
+            body {
+                background-color: black;
+                overflow: hidden;}
+
+        </style>
+        <script src="https://threejs.org/build/three.min.js"></script>
+        <script src = "https://raw.githubusercontent.com/mrdoob/three.js/dev/examples/js/effects/StereoEffect.js"></script>
+        <script>
+    /*
+    - just for button -
+
+    function to_index() {
+    var x = location.href= 'index.html';
+    window.location.replace(x);
+    }
+    */
+
+    //code for the webgl
+    var scene, camera, renderer;
+    var mesh;
+    init();
+    animate();
+
+    function init() {
+
+        scene = new THREE.Scene();
+
+        camera = new THREE.PerspectiveCamera(800, window.innerWidth / window.innerHeight, 1, 10000);
+        camera.position.z = 800;
+        var geometry = new THREE.BoxGeometry(300, 300, 300);
+        var material = new THREE.MeshBasicMaterial({color: 0x00c614, wireframe: true});
+
+        mesh = new THREE.Mesh(geometry, material);
+        scene.add(mesh);
+
+        renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+
+        document.body.appendChild(renderer.domElement);
+
+    }
+
+    function animate() {
+
+        requestAnimationFrame(animate);
+
+        mesh.rotation.x += 0.005;
+        mesh.rotation.y += 0.008;
+
+        renderer.render(scene, camera);
+
+    }
+        </script>
+
+    </body>
+</html>
